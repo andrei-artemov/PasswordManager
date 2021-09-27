@@ -1,0 +1,30 @@
+.StartPage {
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.home + .StartPage {
+  display: none;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 30px;
+  font-family: "Arial";
+  display: flex;
+  justify-content: center;
+}
+
+.autorisation {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.autorisation button {
+  padding: 10px 30px;
+  margin: 0 20px;
+  border-radius: 15px;
+}

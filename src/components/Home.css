@@ -1,0 +1,33 @@
+h1 {
+  padding: 30px;
+}
+
+.row .btn-signout {
+  max-width: 100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.row .btn-add {
+  max-width: 100px;
+  width: 100%;
+}
+
+.row .input-content {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.row .input-content input {
+  max-width: 300px;
+  width: 100%;
+}
+
+.inputToChange {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px auto;
+  margin-right: 30px;
+}
