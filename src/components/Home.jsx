@@ -61,6 +61,7 @@ const Home = () => {
     const editRow = (id) => {
         let rowItem = localStorage.getItem('rowItem');
         const rowItemParced = JSON.parse(rowItem)
+        console.log(rowItemParced);
         if (document.querySelector('.dashboardItem-content__password')) {
             const passParagraph = document.querySelector('.dashboardItem-content__password');
             const loginParagraph = document.querySelector('.dashboardItem-content__login');
@@ -85,7 +86,7 @@ const Home = () => {
         }
     }
 
-// ==================================editRow=============================================
+// =======================================================================================
 
     return (
         <div className="home">
@@ -108,8 +109,4 @@ const Home = () => {
     );
 };
 
-export default Home;
-
-// -- при нажатии на кнопку редактирования текста -> скопировать текст, удалить элемент, на его место вставить инпут и присвоить ему value этот текст, который мы скопировали
-
-// -- при нажатии на кнопку сохранить текст -> скопировать value, удалить инпут, вставить "P", вставить в "P" текст, записать скопированное value в localstorage
+export default Home
