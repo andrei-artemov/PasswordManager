@@ -59,13 +59,16 @@ const Home = () => {
 
 
     const editRow = (id) => {
-        let rowItem = localStorage.getItem('rowItem');
-        const rowItemParced = JSON.parse(rowItem)
-        console.log(rowItemParced);
-        if (document.querySelector('.dashboardItem-content__password')) {
-            const passParagraph = document.querySelector('.dashboardItem-content__password');
-            const loginParagraph = document.querySelector('.dashboardItem-content__login');
-            passToChange = document.querySelector('.dashboardItem-content__password').textContent;
+
+        let dashboardRow = document.getElementById(id);
+
+        var btnActive = document.querySelector('.active')
+
+        if (dashboardRow.querySelector('.dashboardItem-content__password') && !btnActive ) {
+            dashboardRow.querySelector('.btn-edit').classList.add("active");
+            const passParagraph = dashboardRow.querySelector('.dashboardItem-content__password');
+            const loginParagraph = dashboardRow.querySelector('.dashboardItem-content__login');
+            passToChange = dashboardRow.querySelector('.dashboardItem-content__password').textContent;
             passParagraph.parentNode.removeChild(passParagraph);
             insertAfter(inputToChange, loginParagraph);
             inputToChange.value = passToChange;
@@ -75,14 +78,29 @@ const Home = () => {
 // ==================================saveRow=============================================
 
     const saveRow = (id) => {
-        if (document.querySelector('.inputToChange')) {
+
+        let rowItem = localStorage.getItem('rowItem');
+        const rowItemParced = JSON.parse(rowItem)
+        console.log(rowItemParced);
+
+        let dashboardRow = document.getElementById(id)
+
+        if (dashboardRow.querySelector('.inputToChange')) {
+            document.querySelector('.active').classList.remove("active");
             const passParagraph = document.createElement('p');
             passParagraph.className = 'dashboardItem-content__password';
-            const loginParagraph = document.querySelector('.dashboardItem-content__login');
+            const loginParagraph = dashboardRow.querySelector('.dashboardItem-content__login');
             passToChange = inputToChange.value;
             inputToChange.parentNode.removeChild(inputToChange);
             insertAfter(passParagraph, loginParagraph);
             passParagraph.textContent = passToChange;
+            rowItemParced.forEach(function(item) {
+                console.log(item)
+                if (item.id === id) {
+                    item.password = passToChange;
+                    localStorage.setItem('rowItem', JSON.stringify(rowItemParced))
+                }
+            })
         }
     }
 
