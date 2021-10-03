@@ -9,7 +9,7 @@ export default function DashboardItem({ row, deleteRow, editRow, saveRow }) {
                 <div className="dashboardItem-content">
                     <p className="dashboardItem-content__siteName">{row.siteName}</p>
                     <p className="dashboardItem-content__login">{row.login}</p>
-                    <p className="dashboardItem-content__password">{row.password}</p>
+                    <p className="dashboardItem-content__password" data-value={row.password}>*****</p>
                 </div>
                 <div className="dashboardItem-buttons">
                     <button className="btn btn-edit btn-secondary" onClick={() => editRow(row.id)}>Edit</button>

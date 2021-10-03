@@ -38,12 +38,16 @@ const Home = () => {
 // ==================================deleteRow=============================================
 
     const deleteRow = (id) => {
+        var btnActive = document.querySelector('.active')
         let rowItem = localStorage.getItem('rowItem');
         const rowItemParced = JSON.parse(rowItem)
-        setrow(
-            rows.filter(row => row.id !== id),
-            localStorage.setItem('rowItem', JSON.stringify(rowItemParced.filter(rowItem => rowItem.id !== id))),
-        )
+        if (!btnActive) {
+            setrow(
+                rows.filter(row => row.id !== id),
+                localStorage.setItem('rowItem', JSON.stringify(rowItemParced.filter(rowItem => rowItem.id !== id))),
+            )
+        }
+        
     }
 
 // ==================================editRow=============================================
@@ -68,7 +72,7 @@ const Home = () => {
             dashboardRow.querySelector('.btn-edit').classList.add("active");
             const passParagraph = dashboardRow.querySelector('.dashboardItem-content__password');
             const loginParagraph = dashboardRow.querySelector('.dashboardItem-content__login');
-            passToChange = dashboardRow.querySelector('.dashboardItem-content__password').textContent;
+            passToChange = dashboardRow.querySelector('.dashboardItem-content__password').getAttribute('data-value');
             passParagraph.parentNode.removeChild(passParagraph);
             insertAfter(inputToChange, loginParagraph);
             inputToChange.value = passToChange;
@@ -88,14 +92,14 @@ const Home = () => {
         if (dashboardRow.querySelector('.inputToChange')) {
             document.querySelector('.active').classList.remove("active");
             const passParagraph = document.createElement('p');
+            passParagraph.setAttribute('data-value', passToChange)
             passParagraph.className = 'dashboardItem-content__password';
             const loginParagraph = dashboardRow.querySelector('.dashboardItem-content__login');
             passToChange = inputToChange.value;
             inputToChange.parentNode.removeChild(inputToChange);
             insertAfter(passParagraph, loginParagraph);
-            passParagraph.textContent = passToChange;
+            passParagraph.textContent = '*****'
             rowItemParced.forEach(function(item) {
-                console.log(item)
                 if (item.id === id) {
                     item.password = passToChange;
                     localStorage.setItem('rowItem', JSON.stringify(rowItemParced))
